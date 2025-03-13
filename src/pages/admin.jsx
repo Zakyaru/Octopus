@@ -1,19 +1,19 @@
 import Fresque from "../components/Fresque";
 
 const objets = [
-    { type: 'Type1', date: '2025-03-10' },
-    { type: 'Type2', date: '2025-03-11' },
-    { type: 'Type3', date: '2025-03-12' },
-    { type: 'Type4', date: '2025-03-13' },
-    { type: 'Type5', date: '2025-03-14' },
-    { type: 'Type6', date: '2025-03-15' },
-    { type: 'Type7', date: '2025-03-16' },
-    { type: 'Type8', date: '2025-03-17' },
-    { type: 'Type9', date: '2025-03-18' },
-    { type: 'Type10', date: '2025-03-19' },
-    { type: 'Type11', date: '2025-03-20' },
-    { type: 'Type12', date: '2025-03-21' },
-    { type: 'Type13', date: '2025-03-22' },
+    { type: 'création', date: '2025-03-10' },
+    { type: 'fab', date: '2025-03-11' },
+    { type: 'test', date: '2025-03-12' },
+    { type: 'test', date: '2025-03-13' },
+    { type: 'type5', date: '2025-03-14' },
+    { type: 'type6', date: '2025-03-15' },
+    { type: 'type7', date: '2025-03-16' },
+    { type: 'type8', date: '2025-03-17' },
+    { type: 'type9', date: '2025-03-18' },
+    { type: 'test', date: '2025-03-19' },
+    { type: 'test', date: '2025-03-20' },
+    { type: 'test', date: '2025-03-21' },
+    { type: 'derog', date: '2025-03-22' },
     { type: 'Type14', date: '2025-03-23' },
     { type: 'Type15', date: '2025-03-24' },
     { type: 'Type16', date: '2025-03-25' },
@@ -29,8 +29,8 @@ const objets = [
     { type: 'Type26', date: '2025-04-04' },
     { type: 'Type27', date: '2025-04-05' },
     { type: 'Type28', date: '2025-04-06' },
-    { type: 'Type29', date: '2025-04-07' },
-    { type: 'Type30', date: '2025-04-08' },
+    { type: '', date: '2025-04-07' },
+    { type: 'mad', date: '2025-04-08' },
   ];
 
 const Admin = () => {
