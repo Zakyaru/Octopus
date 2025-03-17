@@ -2,6 +2,7 @@
 
 :root {
     --icon-size: 4rem; /* Taille des icônes */
-    --icon-spacing-x: 4rem; /* Espacement horizontal entre les icônes */
-    --icon-spacing-y: 1rem; /* Espacement vertical entre les icônes */
+    --icon-spacing-x-left: 1rem; /* Espacement horizontal entre les icônes à gauche*/
+    --icon-spacing-x-right: 1rem; /* Espacement horizontal entre les icônes à droite*/
+    --icon-spacing-y: 5rem; /* Espacement vertical entre les icônes */
 }
