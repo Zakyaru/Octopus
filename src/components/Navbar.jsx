@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logoOCTOPUS from "../assets/Logo_V2.png";
+import logoOCTOPUS from "../assets/Logo_V4_rond.png";
 import logoSKF from "../assets/logo_skf.png";
 
 const Navbar = () => {
@@ -13,8 +13,8 @@ const Navbar = () => {
         <button onClick={() => setIsOpen(true)} className="md:hidden mr-4">
           <span className="text-2xl">☰</span>
         </button>
-        <img src={logoOCTOPUS} alt="Logo" className="h-12 w-12" />
-        <span className="ml-2 mr-10 font-bold text-2xl">OCTOPUS</span>
+        <img src={logoOCTOPUS} alt="Logo" className="h-10 w-10" />
+        <span className="ml-4 mr-10 font-bold text-2xl">OCTOPUS</span>
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6">
           <Link to="/infos" className="hover:underline">infos</Link>
