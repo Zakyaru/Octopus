@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-    --icon-size: 4rem; /* Taille des icônes */
-    --icon-spacing-x-left: 1rem; /* Espacement horizontal entre les icônes à gauche*/
-    --icon-spacing-x-right: 1rem; /* Espacement horizontal entre les icônes à droite*/
-    --icon-spacing-y: 5rem; /* Espacement vertical entre les icônes */
+    --icon-size: 3rem; /* Taille des icônes */
+    --icon-spacing-x-left: 1.5rem; /* Espacement horizontal entre les icônes à gauche*/
+    --icon-spacing-x-right: 1.5rem; /* Espacement horizontal entre les icônes à droite*/
+    --icon-spacing-y-top: 1rem; /* Espacement vertical haut entre les icônes */
+    --icon-spacing-y-bot: 1rem; /* Espacement vertical bas entre les icônes */
 }
