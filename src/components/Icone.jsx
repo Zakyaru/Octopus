@@ -79,7 +79,8 @@ const Icone = ({ id, objet, onClick }) => {
             style={{
                 marginRight: 'var(--icon-spacing-x-right)',
                 marginLeft: 'var(--icon-spacing-x-left)',
-                marginBottom: 'var(--icon-spacing-y)',
+                marginTop: 'var(--icon-spacing-y-top)',
+                marginBottom: 'var(--icon-spacing-y-bot)',
             }}
         >
             <div
@@ -92,7 +93,7 @@ const Icone = ({ id, objet, onClick }) => {
                 onClick={() => onClick(objet)}
             >
             </div>
-            <div className='bg-gray-100 flex items-center justify-center'>
+            <div className='bg-gray-200 flex items-center justify-center'>
                 {id + 1}
             </div>
         </div>

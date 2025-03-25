@@ -1,4 +1,5 @@
 import Fresque from "../components/Fresque";
+import CardTitleFS from "../components/CardTitleFS";
 
 const objets = [
     { type: 'création', date: '2025-03-10' },
@@ -37,6 +38,9 @@ const Admin = () => {
   return (
     <div className="p-4">
       <Fresque objets={objets} />
+      <CardTitleFS cardName="HISTORIQUE" />
+      <CardTitleFS cardName="COMMENTAIRES" />
+      <CardTitleFS cardName="TESTS" />
     </div>
   );
 };

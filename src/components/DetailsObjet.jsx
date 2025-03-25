@@ -1,8 +1,14 @@
-import React from 'react';
-
 const DetailsObjet = ({ objet }) => {
+  if (!objet) {
+    return (
+      <div className="bg-blue-100 p-4 border border-gray-300 text-gray-500 italic">
+        Aucun objet sélectionné.
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-4 p-4 border border-gray-300">
+    <div className="bg-blue-100 p-4 border border-gray-300">
       <p>Type: {objet.type}</p>
       <p>Date: {objet.date}</p>
     </div>
