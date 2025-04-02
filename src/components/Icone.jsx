@@ -1,7 +1,11 @@
 import logoOCTOPUS from "../assets/Logo_V2.png";
 import logoSKF from "../assets/logo_skf.png";
 
-const Icone = ({ id, objet, onClick, isSelected}) => {
+const Icone = ({ id, objet, onClick, isSelected, disabled}) => {
+
+    const handleClick = () => {
+        if (!disabled && onClick) onClick(objet);
+      };
 
     /*
     A explorer : possibilité de créer une classe personnalisée "triangle" dans le fichier CSS et ensuite l'utiliser comme Tailwind
@@ -83,9 +87,9 @@ const Icone = ({ id, objet, onClick, isSelected}) => {
                 marginBottom: 'var(--icon-spacing-y-bot)',
             }}
         >
-            <div className={`bg-white cursor-pointer ${isSelected ? 'ring-4 ring-black' : ''}`} onClick={onClick}>
+            <div className={`bg-white cursor-pointer ${isSelected ? 'ring-4 ring-black' : ''}`} onClick={handleClick}>
                <div
-                className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT)}`}
+                className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT || objet.TYPE)}`}
                 style={{
                     width: 'var(--icon-size)',
                     height: 'var(--icon-size)',

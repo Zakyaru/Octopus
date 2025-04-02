@@ -1,7 +1,7 @@
 {
     "DESIGNATION":"article",
     "MODE_ACTIF": "présérie",
-    "FLOW_ACTIF": {"MOYEN": "test", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+    "FLOW_ACTIF": {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
     "PROCESS": [
         {
             "MODE": "présérie",

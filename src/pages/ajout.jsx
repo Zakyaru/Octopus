@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import CardTitleFS from "../components/CardTitleFS";
 import Fresque from "../components/Fresque";
 import DetailsObjet from '../components/DetailsObjet';
+import Status from '../components/Status';
 import historique from '../data/historique.json';
+import status from '../data/status.json';
 
 // const historique = [
 //     { TYPE: 'création', DATE: '2025-03-10', ACTEUR: 'PROD', STATUT: 'création' },
@@ -48,6 +50,10 @@ const Ajout = () => {
             <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`} >
                 <CardTitleFS cardName="Détails" />
                 <DetailsObjet objet={selectedObjet} />
+            </div>
+            <div className={`w-full ${cardBackground}`}>
+                <CardTitleFS cardName="STATUS" />
+                <Status status={status} />
             </div>
         </div>
     )
