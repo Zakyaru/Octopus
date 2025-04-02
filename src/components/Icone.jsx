@@ -20,16 +20,18 @@ const Icone = ({ id, objet, onClick }) => {
                 return {
                     borderRadius: '20%', // Carré arrondi
                 };
-            case 'repIn':
-            case 'repOut':
+            case 'rep_in':
+            case 'rep_out':
                 return {
                     clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Triangle
                 };
-            case 'derog':
+            case 'diagnostique':
+            case 'réparation':
+            case 'test_rep':
                 return {
                     clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', // Losange
                 };
-            case 'mad':
+            case 'derog':
                 return {
                     clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)', // Hexagone
                 };
@@ -50,22 +52,20 @@ const Icone = ({ id, objet, onClick }) => {
         }
     };
 
-    const getBackgroundColorClass = (type) => {
-        switch (type) {
+    const getBackgroundColorClass = (statut) => {
+        switch (statut) {
+            case 'OK':
+                return 'bg-blue-500';
+            case 'NOK':
+                return 'bg-red-500';
             case 'création':
+            case 'rep_in':
                 return 'bg-yellow-500';
-            case 'test':
-                return 'bg-blue-500';
-            case 'fab':
-                return 'bg-blue-500';
-            case 'repIn':
-                return 'bg-yellow-500'
-            case 'repOut':
-                return 'bg-green-500'
+            case 'mad':
+            case 'rep_out':
+                return 'bg-green-500';
             case 'derog':
                 return 'bg-orange-500';
-            case 'mad':
-                return 'bg-green-500';
             case 'image':
             case 'image2':
                 return '';
@@ -84,11 +84,11 @@ const Icone = ({ id, objet, onClick }) => {
             }}
         >
             <div
-                className={`flex cursor-pointer ${getBackgroundColorClass(objet.type)}`}
+                className={`flex cursor-pointer ${getBackgroundColorClass(objet.STATUT)}`}
                 style={{
                     width: 'var(--icon-size)',
                     height: 'var(--icon-size)',
-                    ...getShapeStyle(objet.type),
+                    ...getShapeStyle(objet.TYPE),
                 }}
                 onClick={() => onClick(objet)}
             >

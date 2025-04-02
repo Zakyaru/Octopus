@@ -1,0 +1,34 @@
+{
+    "DESIGNATION":"article",
+    "MODE_ACTIF": "présérie",
+    "FLOW_ACTIF": {"MOYEN": "test", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+    "PROCESS": [
+        {
+            "MODE": "présérie",
+            "FLOW": [
+                {"TYPE":"création", "MOYEN": "création", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"test", "MOYEN": "OUTEST", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"test", "MOYEN": "OUTEST", "STEP":2, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"fab", "MOYEN": "PLHARD", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"}
+            ]
+        },
+        {
+            "MODE": "série",
+            "FLOW": [
+                {"TYPE":"création", "MOYEN": "création", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"fab", "MOYEN": "PLHARD", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"mad", "MOYEN": "mad", "STEP":1, "SEQ_FIM": "IND-xxxx"}
+            ]
+        },
+        {
+            "MODE": "panne",
+            "FLOW": [
+                {"TYPE":"diagnostique", "MOYEN": "diagnostique", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"réparation", "MOYEN": "réparation", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"test", "MOYEN": "test", "STEP":1, "SEQ_FIM": "IND-xxxx"}
+            ]
+        }
+    ]
+}

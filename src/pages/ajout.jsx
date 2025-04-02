@@ -3,37 +3,19 @@ import CardTitleFS from "../components/CardTitleFS";
 import Fresque from "../components/Fresque";
 import DetailsObjet from '../components/DetailsObjet';
 
-const objets = [
-    { type: 'création', date: '2025-03-10' },
-    { type: 'fab', date: '2025-03-11' },
-    { type: 'test', date: '2025-03-12' },
-    { type: 'test', date: '2025-03-13' },
-    { type: 'repIn', date: '2025-03-14' },
-    { type: 'type6', date: '2025-03-15' },
-    { type: 'type7', date: '2025-03-16' },
-    { type: 'type8', date: '2025-03-17' },
-    { type: 'repOut', date: '2025-03-18' },
-    { type: 'test', date: '2025-03-19' },
-    { type: 'test', date: '2025-03-20' },
-    { type: 'test', date: '2025-03-21' },
-    { type: 'derog', date: '2025-03-22' },
-    { type: 'Type14', date: '2025-03-23' },
-    { type: 'Type15', date: '2025-03-24' },
-    { type: 'Type16', date: '2025-03-25' },
-    { type: 'Type17', date: '2025-03-26' },
-    { type: 'image2', date: '2025-03-27' },
-    { type: 'Type19', date: '2025-03-28' },
-    { type: 'Type20', date: '2025-03-29' },
-    { type: 'Type21', date: '2025-03-30' },
-    { type: 'Type22', date: '2025-03-31' },
-    { type: 'image', date: '2025-04-01' },
-    { type: 'Type24', date: '2025-04-02' },
-    { type: 'image', date: '2025-04-03' },
-    { type: 'repIn', date: '2025-04-04' },
-    { type: 'Type27', date: '2025-04-05' },
-    { type: 'Type28', date: '2025-04-06' },
-    { type: '', date: '2025-04-07' },
-    { type: 'mad', date: '2025-04-08' },
+const historique = [
+    { TYPE: 'création', DATE: '2025-03-10', ACTEUR: 'PROD', STATUT: 'création'},
+    { TYPE: 'test', DATE: '2025-03-11', ACTEUR: 'PROD', STATUT: 'NOK', DETAILS: {MOYEN: 'OUTEST', STEP:1, SEQ_FIM: 'IND-xxxx', ID_DOC: 'lien'}},
+    { TYPE: 'test', DATE: '2025-03-11', ACTEUR: 'PROD', STATUT: 'NOK', DETAILS: {MOYEN: 'OUTEST', STEP:1, SEQ_FIM: 'IND-xxxx', ID_DOC: 'lien'}},
+    { TYPE: 'test', DATE: '2025-03-11', ACTEUR: 'PROD', STATUT: 'NOK', DETAILS: {MOYEN: 'OUTEST', STEP:1, SEQ_FIM: 'IND-xxxx', ID_DOC: 'lien'}},
+    { TYPE: 'rep_in', DATE: '2025-03-11', ACTEUR: 'OCTOPUS', STATUT: 'rep_in'},
+    { TYPE: 'diagnostique', DATE: '2025-03-12', ACTEUR: 'REP', STATUT: 'OK', DETAILS: {MOYEN: 'diagnostique', STEP:1, SEQ_FIM: 'IND-xxxx', COMMENTAIRE: 'problème de résistance'}},
+    { TYPE: 'réparation', DATE: '2025-03-12', ACTEUR: 'REP', STATUT: 'OK', DETAILS: {MOYEN: 'réparation', STEP:1, SEQ_FIM: 'IND-xxxx', COMMENTAIRE: 'résistance changée'}},
+    { TYPE: 'test_rep', DATE: '2025-03-12', ACTEUR: 'REP', STATUT: 'OK', DETAILS: {MOYEN: 'test', STEP:1, SEQ_FIM: 'IND-xxxx', COMMENTAIRE: 'ok pour réintégrer le cycle normal'}},
+    { TYPE: 'rep_out', DATE: '2025-03-12', ACTEUR: 'OCTOPUS', STATUT: 'rep_out'},
+    { TYPE: 'test', DATE: '2025-03-13', ACTEUR: 'PROD', STATUT: 'OK', DETAILS: {MOYEN: 'OUTEST', STEP:1, SEQ_FIM: 'IND-xxxx', ID_DOC: 'lien'}},
+    { TYPE: 'test', DATE: '2025-03-13', ACTEUR: 'PROD', STATUT: 'OK', DETAILS: {MOYEN: 'OUTEST', STEP:2, SEQ_FIM: 'IND-xxxx', ID_DOC: 'lien'}},
+    { TYPE: 'fab', DATE: '2025-03-14', ACTEUR: 'PROD', STATUT: 'OK', DETAILS: {MOYEN: 'PLHARD', STEP:1, SEQ_FIM: 'IND-xxxx', PLHARD: 'lien'}},
 ];
 
 const Ajout = () => {
@@ -45,7 +27,7 @@ const Ajout = () => {
             <h1 className="font-bold text-xl">Page Ajout test OK3</h1>
             <div className={`w-full ${cardBackground}`}>
                 <CardTitleFS cardName="HISTORIQUE" />
-                <Fresque objets={objets} onClick={setSelectedObjet} /> 
+                <Fresque historique={historique} onClick={setSelectedObjet} /> 
             </div>
             <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`} >
                 <CardTitleFS cardName="Détails"/>
