@@ -1,10 +1,14 @@
 import logoOCTOPUS from "../assets/Logo_V2.png";
 import logoSKF from "../assets/logo_skf.png";
 
-const Icone = ({ id, objet, onClick, isSelected, disabled}) => {
+const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique}) => {
+
+    const iconSize = isStatus ? 'var(--icon-size-status)' : 'var(--icon-size-historique)';
+    const iconMarginX = isStatus ? 'var(--icon-spacing-x-status)' : 'var(--icon-spacing-x-historique)';
+    const iconMarginY = isStatus ? 'var(--icon-spacing-y-status)' : 'var(--icon-spacing-y-historique)';
 
     const handleClick = () => {
-        if (!disabled && onClick) onClick(objet);
+        if (onClick) onClick(objet);
       };
 
     /*
@@ -14,6 +18,7 @@ const Icone = ({ id, objet, onClick, isSelected, disabled}) => {
     const getShapeStyle = (type) => {
         switch (type) {
             case 'création':
+            case 'mad':
                 return {
                     borderRadius: '50%', // Cercle
                 };
@@ -74,25 +79,25 @@ const Icone = ({ id, objet, onClick, isSelected, disabled}) => {
             case 'image2':
                 return '';
             default:
-                return 'bg-gray-500';
+                return 'bg-blue-500';
         }
     };
 
     return (
         <div
             style={{
-                marginRight: 'var(--icon-spacing-x-right)',
-                marginLeft: 'var(--icon-spacing-x-left)',
-                marginTop: 'var(--icon-spacing-y-top)',
-                marginBottom: 'var(--icon-spacing-y-bot)',
+                marginRight: iconMarginX,
+                marginLeft: iconMarginX,
+                marginTop: iconMarginY,
+                marginBottom: iconMarginY,
             }}
         >
-            <div className={`bg-white cursor-pointer ${isSelected ? 'ring-4 ring-black' : ''}`} onClick={handleClick}>
+            <div className={`${isHistorique ? 'cursor-pointer' : ''} ${isSelected ? 'ring-4 ring-black' : ''}`} onClick={handleClick}>
                <div
                 className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT || objet.TYPE)}`}
                 style={{
-                    width: 'var(--icon-size)',
-                    height: 'var(--icon-size)',
+                    width: iconSize,
+                    height: iconSize,
                     marginBottom: '0.25rem',
                     ...getShapeStyle(objet.TYPE),
                 }}
@@ -101,8 +106,8 @@ const Icone = ({ id, objet, onClick, isSelected, disabled}) => {
             </div> 
             </div>
             
-            <div className='bg-gray-200 flex items-center justify-center'>
-                {id + 1}
+            <div className={`bg-gray-200 flex items-center justify-center ${isSelected ? 'bg-gray-400 text-white' : ''}`}>
+                {id}
             </div>
         </div>
 

@@ -12,20 +12,21 @@ const RechercheFS = ({ onResult }) => {
         onResult(result); // Remonte la réponse de l'API
     };
 
-    return(
-        <div className="bg-gray-200 p-6 rounded-md shadow-md max-w-lg mx-auto text-center">
-            <h2 className="text-xl font-bold mb-8">Recherche d'article par DATAMATRIX</h2>
-            <div className="flex flex-col items-center gap-4">
-                <Input
-                placeholder="SNXXX PN(CC)NOM"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                className="w-full sm:max-w-lg px-4 py-2"
-                />
-                <Button label="Rechercher" onClick={handleSearch} className="w-full sm:max-w-3xs px-6 py-2" />
-            </div>            
+    return (
+        <div className="flex flex-col justify-center w-full h-full px-6 py-4 border-3 text-center">
+          <h2 className="text-xl font-bold mb-8">Recherche d'article par DATAMATRIX</h2>
+          <div className="flex flex-col items-center gap-4">
+            <Input
+              placeholder="SNXXX PN(CC)NOM"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="w-full sm:max-w-lg px-4 py-2"
+            />
+            <Button label="Rechercher" onClick={handleSearch} className="w-full sm:max-w-3xs px-6 py-2" />
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default RechercheFS

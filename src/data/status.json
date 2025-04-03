@@ -1,6 +1,6 @@
 {
     "DESIGNATION":"article",
-    "MODE_ACTIF": "présérie",
+    "MODE_ACTIF": "série",
     "FLOW_ACTIF": {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
     "PROCESS": [
         {
@@ -25,9 +25,11 @@
         {
             "MODE": "panne",
             "FLOW": [
+                {"TYPE":"rep_in", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""},
                 {"TYPE":"diagnostique", "MOYEN": "diagnostique", "STEP":1, "SEQ_FIM": ""},
                 {"TYPE":"réparation", "MOYEN": "réparation", "STEP":1, "SEQ_FIM": ""},
-                {"TYPE":"test", "MOYEN": "test", "STEP":1, "SEQ_FIM": "IND-xxxx"}
+                {"TYPE":"test", "MOYEN": "test", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"rep_out", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""}
             ]
         }
     ]

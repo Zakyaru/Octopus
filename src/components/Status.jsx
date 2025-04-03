@@ -4,12 +4,12 @@ const Status = ({ status }) => {
     const { MODE_ACTIF, FLOW_ACTIF, PROCESS } = status;
   
     return (
-      <div className="p-4 flex flex-col gap-4">
+      <div className="p-4 flex flex-col overflow-x-auto gap-2">
         {PROCESS.map((process) => (
-          <div key={process.MODE} className="flex items-center gap-4">
+          <div key={process.MODE} className="flex items-center gap-12">
             {/* Colonne gauche : le nom du MODE */}
             <div
-              className={`min-w-[120px] font-semibold px-2 py-1 rounded ${
+              className={`min-w-[200px] text-center font-semibold px-2 py-2 rounded ${
                 process.MODE === MODE_ACTIF ? 'bg-gray-400 text-white' : ''
               }`}
             >
@@ -21,17 +21,15 @@ const Status = ({ status }) => {
               {process.FLOW.map((flow, i) => {
                 const isActiveFlow =
                   process.MODE === MODE_ACTIF &&
-                  flow.MOYEN === FLOW_ACTIF.MOYEN &&
-                  flow.STEP === FLOW_ACTIF.STEP &&
-                  flow.SEQ_FIM === FLOW_ACTIF.SEQ_FIM;
+                  JSON.stringify(flow) === JSON.stringify(FLOW_ACTIF);
   
                 return (
                   <Icone
-                    key={i}
-                    id={i}
+                    key={`${process.MODE}-${i}`}
+                    id={i+1}
                     objet={flow}
                     isSelected={isActiveFlow}
-                    disabled={true} // désactive toute interaction
+                    isStatus={true}
                   />
                 );
               })}

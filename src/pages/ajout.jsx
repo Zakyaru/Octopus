@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import CardTitleFS from "../components/CardTitleFS";
-import Fresque from "../components/Fresque";
+import Historique from '../components/Historique';
 import DetailsObjet from '../components/DetailsObjet';
 import Status from '../components/Status';
 import historique from '../data/historique.json';
 import status from '../data/status.json';
+import RechercheFS from '../components/RechercheFS';
 
 // const historique = [
 //     { TYPE: 'création', DATE: '2025-03-10', ACTEUR: 'PROD', STATUT: 'création' },
@@ -26,10 +27,11 @@ import status from '../data/status.json';
 const Ajout = () => {
     const cardBackground = "bg-gray-100";
 
+    const [apiResult, setApiResult] = useState(null);
     const [selectedObjet, setSelectedObjet] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
-    const handleClickFresque = (objet, index) => {
+    const handleClickHistorique = (objet, index) => {
         // Si on clique à nouveau sur le même index => on désélectionne
         if (selectedIndex === index) {
             setSelectedIndex(null);
@@ -41,19 +43,35 @@ const Ajout = () => {
     };
 
     return (
-        <div className="p-4">
-            <h1 className="font-bold text-xl">Page Ajout test OK3</h1>
+        <div className="p-4 space-y-4">
+            {/* Ligne Recherche + Status */}
+            <div className="flex flex-col md:flex-row gap-4">
+                {/* RechercheFS avec flex-1 */}
+                <div className="w-full md:w-[700px] flex flex-col bg-gray-200">
+                    <div className="flex-1">
+                        <RechercheFS onResult={setApiResult} />
+                    </div>
+                </div>
+
+                {/* Status avec flex-1 */}
+                <div className={`w-full md:flex-1 flex flex-col ${cardBackground}`}>
+                    <CardTitleFS cardName="STATUS" />
+                    <div className="flex-1">
+                        <Status status={status} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Historique */}
             <div className={`w-full ${cardBackground}`}>
                 <CardTitleFS cardName="HISTORIQUE" />
-                <Fresque historique={historique} onClick={handleClickFresque} selectedIndex={selectedIndex} />
+                <Historique historique={historique} onClick={handleClickHistorique} selectedIndex={selectedIndex} />
             </div>
+
+            {/* Détails */}
             <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`} >
                 <CardTitleFS cardName="Détails" />
                 <DetailsObjet objet={selectedObjet} />
-            </div>
-            <div className={`w-full ${cardBackground}`}>
-                <CardTitleFS cardName="STATUS" />
-                <Status status={status} />
             </div>
         </div>
     )
