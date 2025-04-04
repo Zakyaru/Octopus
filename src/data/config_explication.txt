@@ -1,0 +1,9 @@
+Soit n un article quelconque,
+on veut connaitre le n+1 (s'il existe)
+on veut connaitre le(s) n-1 (s'il(s) existent)
+
+Ainsi si on fait une modification sur un article :
+--> on peut avertir le n+1 qu'un de ses sous-ensemble a changé
+--> on peut avertir les n-1 que leur parent a changé
+
+Pour un déroulé entier de config, la recherche se fait par récursivité
