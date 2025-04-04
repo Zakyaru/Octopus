@@ -53,14 +53,12 @@ const Ajout = () => {
 
                 {/* Partie Status - prend le reste */}
                 <div className={`w-full lg:flex-1 overflow-x-auto ${cardBackground}`}>
-    <div className="min-w-fit">
-        <CardTitleFS cardName="STATUS" />
-        <Status status={status} />
-    </div>
-</div>
-
+                    <div className="min-w-fit">
+                        <CardTitleFS cardName="STATUS" />
+                        <Status status={status} />
+                    </div>
+                </div>
             </div>
-
 
             {/* Historique */}
             <div className={`w-full ${cardBackground}`}>
