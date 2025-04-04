@@ -4,7 +4,7 @@ const Status = ({ status }) => {
     const { MODE_ACTIF, FLOW_ACTIF, PROCESS } = status;
   
     return (
-      <div className="p-4 flex flex-col overflow-x-auto gap-2">
+      <div className="p-4 flex flex-col gap-2">
         {PROCESS.map((process) => (
           <div key={process.MODE} className="flex items-center gap-12">
             {/* Colonne gauche : le nom du MODE */}

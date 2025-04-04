@@ -13,16 +13,16 @@ const RechercheFS = ({ onResult }) => {
     };
 
     return (
-        <div className="flex flex-col justify-center w-full h-full px-6 py-4 border-3 text-center">
-          <h2 className="text-xl font-bold mb-8">Recherche d'article par DATAMATRIX</h2>
-          <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col justify-center w-full h-full px-6 py-10 border-3 text-center">
+          <h2 className="text-xl font-bold mb-10">Recherche d'article par DATAMATRIX</h2>
+          <div className="flex flex-col items-center gap-6">
             <Input
               placeholder="SNXXX PN(CC)NOM"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              className="w-full sm:max-w-lg px-4 py-2"
+              className="w-full sm:max-w-lg"
             />
-            <Button label="Rechercher" onClick={handleSearch} className="w-full sm:max-w-3xs px-6 py-2" />
+            <Button label="Rechercher" onClick={handleSearch} className="w-full sm:max-w-3xs" />
           </div>
         </div>
       );

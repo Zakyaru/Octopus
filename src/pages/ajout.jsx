@@ -45,22 +45,19 @@ const Ajout = () => {
     return (
         <div className="p-4 space-y-4">
             {/* Ligne Recherche + Status */}
-            <div className="flex flex-col md:flex-row gap-4">
-                {/* RechercheFS avec flex-1 */}
-                <div className="w-full md:w-[700px] flex flex-col bg-gray-200">
-                    <div className="flex-1">
-                        <RechercheFS onResult={setApiResult} />
-                    </div>
-                </div>
+            <div className="flex flex-col lg:flex-row gap-4">
+    {/* Partie Recherche - largeur fixe en md+ */}
+    <div className="w-full lg:w-lg lg:min-w-lg flex-shrink-0 flex flex-col bg-gray-200">
+        <RechercheFS onResult={setApiResult} />
+    </div>
 
-                {/* Status avec flex-1 */}
-                <div className={`w-full md:flex-1 flex flex-col ${cardBackground}`}>
-                    <CardTitleFS cardName="STATUS" />
-                    <div className="flex-1">
-                        <Status status={status} />
-                    </div>
-                </div>
-            </div>
+    {/* Partie Status - prend le reste */}
+    <div className={`w-full lg:flex-1 overflow-x-auto ${cardBackground}`}>
+        <CardTitleFS cardName="STATUS" />
+        <Status status={status} />
+    </div>
+</div>
+
 
             {/* Historique */}
             <div className={`w-full ${cardBackground}`}>
