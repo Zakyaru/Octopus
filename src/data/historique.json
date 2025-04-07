@@ -13,4 +13,6 @@
     { "ID_FLOW": 4, "TYPE": "fab", "DATE": "2025-03-14", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "PLHARD", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PLHARD": "lien" } },
     { "ID_FLOW": 5, "TYPE": "image", "DATE": "2025-03-14", "ACTEUR": "PROD", "STATUT": "image", "DETAILS": { "MOYEN": "PLHARD", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PLHARD": "lien" } }
 ]
+
+  
   

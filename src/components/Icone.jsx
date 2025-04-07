@@ -19,6 +19,7 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique}) => {
         switch (type) {
             case 'création':
             case 'mad':
+            case 'intégration':
                 return {
                     borderRadius: '50%', // Cercle
                 };
@@ -71,6 +72,7 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique}) => {
             case 'rep_in':
                 return 'bg-yellow-500';
             case 'mad':
+            case 'intégration':
             case 'rep_out':
                 return 'bg-green-500';
             case 'derog':
