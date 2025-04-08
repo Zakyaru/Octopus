@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { getTableFicheSuiveuse } from '../services/api.js';
 import CardTitleFS from "../components/CardTitleFS";
 import Historique from '../components/Historique';
 import DetailsObjet from '../components/DetailsObjet';
@@ -10,6 +12,20 @@ const Ajout = () => {
     const cardBackground = "bg-gray-100";
 
     const [apiResult, setApiResult] = useState(null);
+
+    const [searchParams] = useSearchParams();
+const articleParam = searchParams.get('article');
+
+// Appeler automatiquement la recherche si un article est présent dans l’URL
+useEffect(() => {
+  if (articleParam) {
+    // Appelle manuelle de RechercheFS comme si on l'avait tapé
+    getTableFicheSuiveuse(articleParam).then((result) => {
+      setApiResult(result);
+    });
+  }
+}, [articleParam]);
+
     const [selectedObjet, setSelectedObjet] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
