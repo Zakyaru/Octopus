@@ -4,6 +4,7 @@ import Historique from '../components/Historique';
 import DetailsObjet from '../components/DetailsObjet';
 import Status from '../components/Status';
 import RechercheFS from '../components/RechercheFS';
+import Config from '../components/Config';
 
 const Ajout = () => {
     const cardBackground = "bg-gray-100";
@@ -32,6 +33,10 @@ const Ajout = () => {
 
     const statusData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.STATUT);
     const historiqueData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.HISTORIQUE);
+    const configData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.CONFIG_APPLIQUEE);
+
+    console.log(configData);
+
 
     return (
         <div className="p-4 space-y-4">
@@ -57,6 +62,10 @@ const Ajout = () => {
             <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`}>
                 <CardTitleFS cardName="Détails" />
                 <DetailsObjet objet={selectedObjet} />
+            </div>
+            <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`}>
+                <CardTitleFS cardName="CONFIG" />
+                <Config config={configData} />
             </div>
         </div>
     );
