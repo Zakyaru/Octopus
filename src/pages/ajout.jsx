@@ -14,17 +14,17 @@ const Ajout = () => {
     const [apiResult, setApiResult] = useState(null);
 
     const [searchParams] = useSearchParams();
-const articleParam = searchParams.get('article');
+    const articleParam = searchParams.get('article');
 
-// Appeler automatiquement la recherche si un article est présent dans l’URL
-useEffect(() => {
-  if (articleParam) {
-    // Appelle manuelle de RechercheFS comme si on l'avait tapé
-    getTableFicheSuiveuse(articleParam).then((result) => {
-      setApiResult(result);
-    });
-  }
-}, [articleParam]);
+    // Appeler automatiquement la recherche si un article est présent dans l’URL
+    useEffect(() => {
+        if (articleParam) {
+            // Appelle manuelle de RechercheFS comme si on l'avait tapé
+            getTableFicheSuiveuse(articleParam).then((result) => {
+                setApiResult(result);
+            });
+        }
+    }, [articleParam]);
 
     const [selectedObjet, setSelectedObjet] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(null);
@@ -50,6 +50,7 @@ useEffect(() => {
     const statusData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.STATUT);
     const historiqueData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.HISTORIQUE);
     const configData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.CONFIG_APPLIQUEE);
+    const idType = apiResult === null ? null : apiResult?.RESULT?.[0]?.ID_TYPE;
 
     console.log(configData);
 
@@ -75,14 +76,28 @@ useEffect(() => {
                 <Historique historique={historiqueData} onClick={handleClickHistorique} selectedIndex={selectedIndex} />
             </div>
 
-            <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`}>
-                <CardTitleFS cardName="Détails" />
-                <DetailsObjet objet={selectedObjet} />
+            <div className="flex flex-col lg:flex-row gap-4">
+                <div className={`w-full lg:w-1/3 ${cardBackground}`}>
+                    <CardTitleFS cardName="Détails" />
+                    <DetailsObjet objet={selectedObjet} />
+                </div>
+                <div className={`w-full lg:w-1/3 flex flex-col gap-4`}>
+                    <div className={`${cardBackground}`}>
+                        <CardTitleFS cardName="COMMENTAIRES" />
+                        <div></div>
+                    </div>
+                    <div className={`${cardBackground}`}>
+                        <CardTitleFS cardName="AUTRE" />
+                        <div className="p-4"><span className='font-semibold'>ID_TYPE :</span> {idType} </div>
+                    </div>
+                </div>
+                <div className={`w-full lg:w-1/3 ${cardBackground}`}>
+                    <CardTitleFS cardName="CONFIG" />
+                    <Config config={configData} />
+                </div>
             </div>
-            <div className={`w-full md:w-1/2 lg:w-[700px] ${cardBackground}`}>
-                <CardTitleFS cardName="CONFIG" />
-                <Config config={configData} />
-            </div>
+
+
         </div>
     );
 };

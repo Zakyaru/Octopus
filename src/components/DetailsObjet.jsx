@@ -7,6 +7,48 @@ const DetailsObjet = ({ objet }) => {
     );
   }
 
+  // Liste des clés avec comportement spécifique
+  const linkKeys = ['ID_DOC', 'PLHARD', 'PLSOFT'];
+  const ajoutKey = 'PARENT';
+
+  // Fonction qui gère l’affichage dynamique en fonction de la clé
+  const renderDetailLine = (key, value) => {
+    if (linkKeys.includes(key)) {
+      return (
+        <p key={key}>
+          <span className="font-semibold">{key} :</span>{' '}
+          <span
+            onClick={() => window.open('', '_blank')}
+            className="text-blue-600 underline cursor-pointer"
+          >
+            {value}
+          </span>
+        </p>
+      );
+    }
+
+    if (key === ajoutKey) {
+      return (
+        <p key={key}>
+          <span className="font-semibold">{key} :</span>{' '}
+          <span
+            onClick={() => window.open(`#/ajout?article=${encodeURIComponent(value)}`, '_blank')}
+            className="text-blue-600 underline cursor-pointer"
+          >
+            {value}
+          </span>
+        </p>
+      );
+    }
+
+    // Cas par défaut (clé standard)
+    return (
+      <p key={key}>
+        <span className="font-semibold">{key} :</span> {value}
+      </p>
+    );
+  };
+
   return (
     <div className="bg-blue-100 p-4 border border-gray-300 space-y-2">
       <p><span className="font-semibold">TYPE :</span> {objet.TYPE}</p>
@@ -16,11 +58,7 @@ const DetailsObjet = ({ objet }) => {
 
       {objet.DETAILS && (
         <div className="mt-2 space-y-1">
-          {Object.entries(objet.DETAILS).map(([key, value]) => (
-            <p key={key}>
-              <span className="font-semibold">{key} :</span> {value}
-            </p>
-          ))}
+          {Object.entries(objet.DETAILS).map(([key, value]) => renderDetailLine(key, value))}
         </div>
       )}
     </div>
