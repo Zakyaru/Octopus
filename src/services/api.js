@@ -1,8 +1,9 @@
 export const getTableFicheSuiveuse = async (value) => {
     try {
+        console.log("appel API")
         const response = await fetch("http://localhost:1880/OCTOPUS/Get_FS_article", {
             method: "POST",
-            header: {
+            headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ DATA_MATRIX: value }),

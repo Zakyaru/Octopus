@@ -1,0 +1,10 @@
+{
+    "PARENT": {"SN": "", "PN": "", "CC": "", "NOM": ""},
+    "ARTICLE": {"SN": "SN111", "PN": "ELCART-1000", "CC": "4242A", "NOM": "A"},
+    "SUB_ARTICLE": [
+        {"SN": "", "PN": "", "CC": "", "NOM": ""},
+        {"SN": "", "PN": "", "CC": "", "NOM": ""},
+        {"SN": "", "PN": "", "CC": "", "NOM": ""}
+    ]
+}
+
