@@ -1,7 +1,10 @@
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 export const getTableFicheSuiveuse = async (value) => {
     try {
-        console.log("appel API")
-        const response = await fetch("http://localhost:1880/OCTOPUS/Get_FS_article", {
+        console.log("appel API");
+
+        const response = await fetch(`${BASE_URL}/OCTOPUS/Get_FS_article`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
