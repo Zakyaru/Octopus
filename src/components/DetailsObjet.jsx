@@ -32,7 +32,7 @@ const DetailsObjet = ({ objet }) => {
         <p key={key}>
           <span className="font-semibold">{key} :</span>{' '}
           <span
-            onClick={() => window.open(`#/ajout?article=${encodeURIComponent(value)}`, '_blank')}
+            onClick={() => window.open(`#/infos?article=${encodeURIComponent(value)}`, '_blank')}
             className="text-blue-600 underline cursor-pointer"
           >
             {value}

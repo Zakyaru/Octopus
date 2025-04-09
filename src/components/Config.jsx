@@ -69,7 +69,7 @@ const SubArticle = ({ article, level = 1 }) => {
 
                 {/* Nom du sous-article, cliquable (ouvre une nouvelle page "parallèle") */}
                 <span
-                    onClick={() => window.open(`#/ajout?article=${encodeURIComponent(article)}`, '_blank')}
+                    onClick={() => window.open(`#/infos?article=${encodeURIComponent(article)}`, '_blank')}
                     className="text-blue-600 underline cursor-pointer"
                 >
                     {article}
