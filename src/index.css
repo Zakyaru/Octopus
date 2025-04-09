@@ -9,3 +9,9 @@
     --icon-spacing-x-status: 1rem; /* Espacement horizontal entre les icônes pour Status*/
     --icon-spacing-y-status: 0.5rem; /* Espacement vertical entre les icônes pour Status */
 }
+
+@layer utilities {
+  .cardHeight {
+    height: 250px;
+  }
+}
