@@ -13,7 +13,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-200 py-2 px-4 flex items-center justify-between">
+    <nav className="bg-gray-300 py-2 px-4 flex items-center justify-between">
       {/* Left Section */}
       <div className="flex items-center">
         {/* Burger button (visible en mobile) */}
