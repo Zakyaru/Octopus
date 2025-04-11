@@ -9,7 +9,7 @@ import { BsDot } from "react-icons/bs";
 // Parse proprement le champ CONFIG_APPLIQUEE retourné par l'API
 const parseConfig = (result) => {
     try {
-        const raw = result?.RESULT?.[0]?.CONFIG_APPLIQUEE;
+        const raw = result?.RESULT?.[0]?.CONFIG;
         return typeof raw === 'string' ? JSON.parse(raw) : raw;
     } catch (e) {
         console.warn("Erreur de parsing config :", e);

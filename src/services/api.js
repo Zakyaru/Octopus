@@ -9,7 +9,7 @@ export const getTableFicheSuiveuse = async (value) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ DATA_MATRIX: value }),
+            body: JSON.stringify({ DATAMATRIX: value }),
         });
 
         if (!response.ok) {

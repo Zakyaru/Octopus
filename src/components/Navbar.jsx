@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logoOCTOPUS from "../assets/Logo_V4_rond.png";
+import logoOCTOPUS from "../assets/logo_octopus.png";
 import logoSKF from "../assets/logo_skf.png";
 
 // Classe active appliquée automatiquement par NavLink

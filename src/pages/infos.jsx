@@ -45,11 +45,11 @@ const Infos = () => {
     }
   };
 
-  const statusData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.STATUT);
+  const statusData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.STATUS);
   const historiqueData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.HISTORIQUE);
-  const configData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.CONFIG_APPLIQUEE);
+  const configData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.CONFIG);
   const idType = apiResult === null ? null : apiResult?.RESULT?.[0]?.ID_TYPE;
-  const datamatrix = apiResult === null ? null : apiResult?.RESULT?.[0]?.DATA_MATRIX;
+  const datamatrix = apiResult === null ? null : apiResult?.RESULT?.[0]?.DATAMATRIX;
 
   return (
     <div className="p-4 space-y-4">
