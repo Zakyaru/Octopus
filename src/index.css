@@ -1,17 +1,19 @@
+/* Import de Tailwind CSS via Vite */
 @import "tailwindcss";
 
+/**
+ * 🎨 Variables CSS globales définies dans :root
+ * Utilisées pour normaliser les tailles et espacements d’icônes
+ * dans les composants `Icone` (Historique et Status).
+ */
 :root {
-    --icon-size-historique: 3rem; /* Taille des icônes pour Historique*/
-    --icon-spacing-x-historique: 1.5rem; /* Espacement horizontal entre les icônes pour Historique*/
-    --icon-spacing-y-historique: 1rem; /* Espacement vertical entre les icônes pour Historique */
+    /* Historique */
+    --icon-size-historique: 3rem; /* Taille des icônes dans la section Historique */
+    --icon-spacing-x-historique: 1.5rem; /* Marge horizontale entre icônes */
+    --icon-spacing-y-historique: 1rem;   /* Marge verticale entre icônes */
 
-    --icon-size-status: 2rem; /* Taille des icônes pour Status*/
-    --icon-spacing-x-status: 1rem; /* Espacement horizontal entre les icônes pour Status*/
-    --icon-spacing-y-status: 0.5rem; /* Espacement vertical entre les icônes pour Status */
-}
-
-@layer utilities {
-  .cardHeight {
-    height: 250px;
-  }
+    /* Status */
+    --icon-size-status: 2rem;           /* Taille plus petite pour les icônes dans Status */
+    --icon-spacing-x-status: 1rem;
+    --icon-spacing-y-status: 0.5rem;
 }

@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
-// Import de la fonction pour récupérer les infos d'un article
 import { getTableFicheSuiveuse } from '../services/api.js';
 
-// Icônes utilisées dans l'affichage
+// Icônes d’affichage (+, -, bullet)
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
 
-// Parse proprement le champ CONFIG_APPLIQUEE retourné par l'API
+/**
+ * 🔍 Fonction utilitaire : parse le champ CONFIG du résultat API
+ * Retourne un objet JSON ou "__invalid__" en cas d'erreur
+ */
 const parseConfig = (result) => {
     try {
         const raw = result?.RESULT?.[0]?.CONFIG;
         return typeof raw === 'string' ? JSON.parse(raw) : raw;
     } catch (e) {
         console.warn("Erreur de parsing config :", e);
-        return "__invalid__"; // On retourne un marqueur explicite d'erreur
+        return "__invalid__";
     }
 };
 
-// Vérifie que l'objet config contient bien les propriétés attendues
+/**
+ * ✅ Vérifie que l’objet de config contient les clés essentielles :
+ * PARENT (string), ARTICLE (string), et SUB_ARTICLE (array)
+ */
 const isValidConfig = (config) => {
     return (
         config &&
@@ -28,12 +33,17 @@ const isValidConfig = (config) => {
     );
 };
 
-// Composant récursif pour afficher un sous-ensemble (sous-article)
+/**
+ * 🔁 Composant récursif : affiche un sous-article avec ses propres sous-articles
+ * Props :
+ * - article : nom du sous-article à afficher
+ * - level : niveau de profondeur dans la hiérarchie (sert pour l’indentation, etc.)
+ */
 const SubArticle = ({ article, level = 1 }) => {
-    const [configFetched, setConfigFetched] = useState(null); // Stocke la config récupérée
-    const [isOpen, setIsOpen] = useState(false);              // Gère l'ouverture/fermeture de la branche
+    const [configFetched, setConfigFetched] = useState(null); // Résultat API
+    const [isOpen, setIsOpen] = useState(false);              // Ouverture/fermeture du sous-ensemble
 
-    // Appelé au montage pour récupérer la config du sous-article
+    // Fetch de la config du sous-article à l'affichage
     useEffect(() => {
         const fetchData = async () => {
             const res = await getTableFicheSuiveuse(article);
@@ -41,19 +51,19 @@ const SubArticle = ({ article, level = 1 }) => {
             setConfigFetched(parsed);
         };
         fetchData();
-    }, [article]); // Re-fetch uniquement si `article` change
+    }, [article]);
 
-    const isValid = isValidConfig(configFetched); // Vérifie si la config est correcte
-    const hasChildren = isValid && configFetched.SUB_ARTICLE.length > 0; // Y a-t-il des (sous)-sous-ensembles ?
+    const isValid = isValidConfig(configFetched);
+    const hasChildren = isValid && configFetched.SUB_ARTICLE.length > 0;
 
     const handleToggle = () => {
-        setIsOpen(!isOpen); // Toggle ouverture / fermeture
+        setIsOpen(!isOpen);
     };
 
     return (
         <div className={`ml-8 mt-1`}>
             <div className="flex items-center gap-2">
-                {/* Affiche un bouton + / - si on a des enfants, sinon juste un bullet point */}
+                {/* Icône d’expansion (si enfants) ou simple bullet */}
                 {hasChildren ? (
                     <button
                         onClick={handleToggle}
@@ -67,7 +77,7 @@ const SubArticle = ({ article, level = 1 }) => {
                     </span>
                 )}
 
-                {/* Nom du sous-article, cliquable (ouvre une nouvelle page "parallèle") */}
+                {/* Nom du sous-article → clique pour ouvrir dans un onglet infos */}
                 <span
                     onClick={() => window.open(`#/infos?article=${encodeURIComponent(article)}`, '_blank')}
                     className="text-blue-600 underline cursor-pointer"
@@ -76,7 +86,7 @@ const SubArticle = ({ article, level = 1 }) => {
                 </span>
             </div>
 
-            {/* Si la branche est ouverte, on affiche récursivement les sous-articles */}
+            {/* Si ouvert, afficher récursivement les enfants */}
             {isOpen && hasChildren && (
                 <div>
                     {configFetched.SUB_ARTICLE.map((sub, i) => (
@@ -85,7 +95,7 @@ const SubArticle = ({ article, level = 1 }) => {
                 </div>
             )}
 
-            {/* Affiche une erreur si la config n'est pas valide */}
+            {/* Message d'erreur en cas de structure invalide */}
             {!isValid && configFetched === "__invalid__" && (
                 <p className="text-red-500 italic pl-4">Erreur de config du sous-ensemble.</p>
             )}
@@ -93,30 +103,36 @@ const SubArticle = ({ article, level = 1 }) => {
     );
 };
 
-// Composant principal qui affiche la config d’un article donné
+/**
+ * Composant principal : Config
+ * Affiche la structure d’un article racine et ses sous-articles hiérarchiques
+ */
 const Config = ({ config }) => {
-    // Cas : rien n'a encore été chargé
+    // Cas 1 : données non encore chargées
     if (config === null) {
         console.warn("Config non encore chargée");
         return <p className="text-gray-400 italic p-2">En attente de recherche.</p>;
     }
 
-    // Cas : erreur de parsing JSON
+    // Cas 2 : erreur parsing JSON
     if (config === "__invalid__") {
         console.warn("Config invalide");
         return <p className="text-red-500 italic p-2">Erreur de parsing dans la configuration.</p>;
     }
 
-    // Cas : structure incorrecte
+    // Cas 3 : structure incorrecte
     if (!isValidConfig(config)) {
         console.warn("Config non conforme :", config);
         return <p className="text-red-500 italic p-2">Données de configuration non conformes.</p>;
     }
 
-    // Cas normal : on affiche l’article et ses sous-articles
+    // Cas 4 : structure valide → affichage
     return (
         <div className="p-2">
+            {/* Nom de l’article principal */}
             <div className="pl-2 font-semibold">{config.ARTICLE}</div>
+
+            {/* Affichage récursif des sous-articles */}
             {config.SUB_ARTICLE.map((sub, i) => (
                 <SubArticle key={i} article={sub} level={1} />
             ))}

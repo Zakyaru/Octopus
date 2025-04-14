@@ -1,67 +1,88 @@
 import logoOCTOPUS from "../assets/Logo_V2.png";
 import logoSKF from "../assets/logo_skf.png";
 
-const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique}) => {
+/**
+ * Composant Icone
+ * Représente graphiquement une étape ou un état sous forme d’icône :
+ * - Forme selon le TYPE (cercle, triangle, losange, image…)
+ * - Couleur selon le STATUT ou le TYPE
+ * - Permet l’interaction (clic) dans certains contextes
+ *
+ * Props :
+ * - id : identifiant de l'icône (affiché sous la forme)
+ * - objet : l’objet associé à cette étape (doit contenir TYPE et STATUT)
+ * - onClick : fonction appelée au clic (optionnelle)
+ * - isSelected : booléen indiquant si l’icône est sélectionnée (pour surlignage)
+ * - isStatus / isHistorique : indiquent le contexte d'affichage (status ou historique)
+ */
+const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique }) => {
 
+    // Taille et marges conditionnelles selon le contexte (status ou historique)
     const iconSize = isStatus ? 'var(--icon-size-status)' : 'var(--icon-size-historique)';
     const iconMarginX = isStatus ? 'var(--icon-spacing-x-status)' : 'var(--icon-spacing-x-historique)';
     const iconMarginY = isStatus ? 'var(--icon-spacing-y-status)' : 'var(--icon-spacing-y-historique)';
 
+    // Fonction de gestion du clic, si une fonction onClick est fournie
     const handleClick = () => {
         if (onClick) onClick(objet);
-      };
+    };
 
-    /*
-    A explorer : possibilité de créer une classe personnalisée "triangle" dans le fichier CSS et ensuite l'utiliser comme Tailwind
-    Avantage actuel : sépare bien la forme et la couleur
-    */
+    /**
+     * Détermine le style de forme selon le type de l'étape.
+     * Peut générer :
+     * - cercle, carré arrondi, triangle, losange, hexagone
+     * - ou même une image en fond
+     */
     const getShapeStyle = (type) => {
         switch (type) {
             case 'création':
             case 'mad':
             case 'intégration':
-                return {
-                    borderRadius: '50%', // Cercle
-                };
+                return { borderRadius: '50%' }; // Cercle
+
             case 'test':
-                return {
-                };
+                return {}; // Forme par défaut (carré)
+
             case 'fab':
-                return {
-                    borderRadius: '20%', // Carré arrondi
-                };
+                return { borderRadius: '20%' }; // Carré légèrement arrondi
+
             case 'rep_in':
             case 'rep_out':
-                return {
-                    clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Triangle
-                };
+                return { clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }; // Triangle
+
             case 'diagnostique':
             case 'réparation':
             case 'test_rep':
-                return {
-                    clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', // Losange
-                };
+                return { clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }; // Losange
+
             case 'derog':
                 return {
-                    clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)', // Hexagone
-                };
+                    clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
+                }; // Hexagone
+
             case 'image':
                 return {
                     backgroundImage: `url(${logoOCTOPUS})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 };
+
             case 'image2':
                 return {
                     backgroundImage: `url(${logoSKF})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 };
+
             default:
                 return {};
         }
     };
 
+    /**
+     * Détermine la classe CSS (couleur de fond) en fonction du statut ou type.
+     * Certaines formes n’ont pas de fond car ce sont des images.
+     */
     const getBackgroundColorClass = (statut) => {
         switch (statut) {
             case 'OK':
@@ -79,9 +100,9 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique}) => {
                 return 'bg-orange-500';
             case 'image':
             case 'image2':
-                return '';
+                return ''; // Pas de couleur car fond image
             default:
-                return 'bg-blue-500';
+                return 'bg-blue-500'; // Couleur par défaut
         }
     };
 
@@ -94,25 +115,27 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique}) => {
                 marginBottom: iconMarginY,
             }}
         >
-            <div className={`${isHistorique ? 'cursor-pointer' : ''} ${isSelected ? 'ring-4 ring-black' : ''}`} onClick={handleClick}>
-               <div
-                className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT || objet.TYPE)}`}
-                style={{
-                    width: iconSize,
-                    height: iconSize,
-                    marginBottom: '0.25rem',
-                    ...getShapeStyle(objet.TYPE),
-                }}
-        
+            {/* Conteneur de la forme avec clic + surlignage si sélectionnée */}
+            <div
+                className={`${isHistorique ? 'cursor-pointer' : ''} ${isSelected ? 'ring-4 ring-black' : ''}`}
+                onClick={handleClick}
             >
-            </div> 
+                <div
+                    className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT || objet.TYPE)}`}
+                    style={{
+                        width: iconSize,
+                        height: iconSize,
+                        marginBottom: '0.25rem',
+                        ...getShapeStyle(objet.TYPE),
+                    }}
+                />
             </div>
-            
+
+            {/* Affichage de l'identifiant sous la forme */}
             <div className={`bg-gray-200 flex items-center justify-center ${isSelected ? 'bg-gray-400 text-white' : ''}`}>
                 {id}
             </div>
         </div>
-
     );
 };
 

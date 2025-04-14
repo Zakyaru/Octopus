@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getTableFicheSuiveuse } from '../services/api.js';
+
+// Composants custom utilisés pour l'affichage
 import CardTitleFS from "../components/CardTitleFS";
 import Historique from '../components/Historique';
 import DetailsObjet from '../components/DetailsObjet';
@@ -12,10 +14,14 @@ import Bandeau from '../components/Bandeau.jsx';
 const Infos = () => {
   const cardBackground = "bg-gray-100";
 
+  // Stocke le résultat brut de l'appel API
   const [apiResult, setApiResult] = useState(null);
+
+  // Récupère les paramètres de l'URL, notamment le paramètre "article"
   const [searchParams] = useSearchParams();
   const articleParam = searchParams.get('article');
 
+  // Appel API déclenché au chargement ou quand l'article change
   useEffect(() => {
     if (articleParam) {
       getTableFicheSuiveuse(articleParam).then((result) => {
@@ -24,9 +30,11 @@ const Infos = () => {
     }
   }, [articleParam]);
 
+  // Gestion de l'objet sélectionné dans l'historique
   const [selectedObjet, setSelectedObjet] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
+  // Sélection ou désélection d'un élément de l'historique
   const handleClickHistorique = (objet, index) => {
     if (selectedIndex === index) {
       setSelectedIndex(null);
@@ -37,6 +45,7 @@ const Infos = () => {
     }
   };
 
+  // Permet de parser proprement des données JSON stockées en string
   const parseJson = (value) => {
     try {
       return typeof value === 'string' ? JSON.parse(value) : value;
@@ -45,6 +54,7 @@ const Infos = () => {
     }
   };
 
+  // Extraction et parsing des sous-parties du résultat API
   const statusData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.STATUS);
   const historiqueData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.HISTORIQUE);
   const configData = apiResult === null ? null : parseJson(apiResult?.RESULT?.[0]?.CONFIG);
@@ -53,12 +63,14 @@ const Infos = () => {
 
   return (
     <div className="p-4 space-y-4">
-      {/* Recherche + Status */}
+      {/* 1. Section Recherche + Status */}
       <div className="flex flex-col lg:flex-row gap-4">
+        {/* Composant de recherche par article */}
         <div className="w-full lg:w-lg lg:min-w-lg flex-shrink-0 flex flex-col bg-gray-200">
           <RechercheFS onResult={setApiResult} />
         </div>
 
+        {/* Composant d'affichage du status */}
         <div className={`w-full lg:flex-1 overflow-x-auto shadow ${cardBackground}`}>
           <div className="min-w-fit">
             <CardTitleFS cardName="STATUS" />
@@ -67,16 +79,20 @@ const Infos = () => {
         </div>
       </div>
 
-      {/* Historique */}
+      {/* 2. Section Historique des étapes précédentes */}
       <div className={`w-full shadow ${cardBackground}`}>
         <CardTitleFS cardName="HISTORIQUE" />
-        <Historique historique={historiqueData} onClick={handleClickHistorique} selectedIndex={selectedIndex} />
+        <Historique
+          historique={historiqueData}
+          onClick={handleClickHistorique}
+          selectedIndex={selectedIndex}
+        />
       </div>
 
-      {/* Trois colonnes avec hauteur fixe */}
+      {/* 3. Section trois colonnes : Détails | Commentaires & Autre | Config */}
       <div className="flex flex-col lg:flex-row lg:h-[250px] gap-4">
 
-        {/* Section 1 */}
+        {/* 3.1 - Détails de l'objet sélectionné dans l'historique */}
         <div className={`flex-1 shadow ${cardBackground}`}>
           <div className="flex flex-col h-full">
             <CardTitleFS cardName="Détails" />
@@ -86,10 +102,11 @@ const Infos = () => {
           </div>
         </div>
 
-        {/* Section 2 (avec 2 sous-sections) */}
+        {/* 3.2 - Colonne centrale : Commentaires + ID Type */}
         <div className="flex-1">
           <div className="flex flex-col h-full gap-y-4">
-            {/* Sous-section 2.1 */}
+
+            {/* 3.2.1 - Commentaires */}
             <div className={`flex flex-col flex-1 min-h-0 shadow ${cardBackground}`}>
               <CardTitleFS cardName="COMMENTAIRES" />
               <div className="flex-1 overflow-auto p-2">
@@ -98,23 +115,24 @@ const Infos = () => {
                     Ceci est un exemple de commentaire
                   </p>
                 )}
-
               </div>
             </div>
 
-            {/* Sous-section 2.2 */}
+            {/* 3.2.2 - ID_TYPE brut affiché pour information */}
             <div className={`flex flex-col flex-1 min-h-0 shadow ${cardBackground}`}>
               <CardTitleFS cardName="AUTRE" />
               <div className="flex-1 overflow-auto p-2">
                 {idType && (
-                  <p><span className='font-semibold'>ID_TYPE : </span>{idType}</p>
+                  <p>
+                    <span className='font-semibold'>ID_TYPE : </span>{idType}
+                  </p>
                 )}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Section 3 */}
+        {/* 3.3 - Configuration JSON brute affichée via le composant Config */}
         <div className={`flex-1 shadow ${cardBackground}`}>
           <div className="flex flex-col h-full">
             <CardTitleFS cardName="CONFIG" />
@@ -123,17 +141,16 @@ const Infos = () => {
                 <Config config={configData} />
               </div>
             </div>
-
           </div>
         </div>
       </div>
 
+      {/* 4. Bandeau final avec affichage du datamatrix */}
       <div className={`w-full p-4 shadow border border-blue-500 border-2 ${cardBackground}`}>
         <Bandeau datamatrix={datamatrix} />
       </div>
     </div>
   );
 };
-
 
 export default Infos;
