@@ -1,5 +1,5 @@
 
-# 🐙 Octopus — Fiche suiveuse électronique
+# 🐙 Octopus — Fiche suiveuse numérique
 
 Octopus est une application web qui permet de suivre la traçabilité d'articles électroniques à partir d'un code DATAMATRIX.
 
@@ -54,6 +54,7 @@ Puis ouvrir : [http://localhost:5173/Octopus](http://localhost:5173/Octopus)
 ```
 npm run build
 ```
+Un unique fichier html statique est alors disponible dans le dossier /dist
 
 ## ✨ Auteur
 
