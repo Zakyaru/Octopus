@@ -90,7 +90,7 @@ const Infos = () => {
       </div>
 
       {/* 3. Section trois colonnes : Détails | Commentaires & Autre | Config */}
-      <div className="flex flex-col lg:flex-row lg:h-[250px] gap-4">
+      <div className="flex flex-col lg:flex-row lg:h-[350px] gap-4">
 
         {/* 3.1 - Détails de l'objet sélectionné dans l'historique */}
         <div className={`flex-1 shadow ${cardBackground}`}>

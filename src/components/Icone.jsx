@@ -115,20 +115,28 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique }) => {
                 marginBottom: iconMarginY,
             }}
         >
-            {/* Conteneur de la forme avec clic + surlignage si sélectionnée */}
+            {/* Conteneur de la forme avec clic, survol + surlignage si sélectionnée */}
             <div
                 className={`${isHistorique ? 'cursor-pointer' : ''} ${isSelected ? 'ring-4 ring-black' : ''}`}
                 onClick={handleClick}
             >
-                <div
-                    className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT || objet.TYPE)}`}
-                    style={{
-                        width: iconSize,
-                        height: iconSize,
-                        marginBottom: '0.25rem',
-                        ...getShapeStyle(objet.TYPE),
-                    }}
-                />
+                <div className="relative group">
+                    <div
+                        className={`flex transition-all duration-200 ${getBackgroundColorClass(objet.STATUT || objet.TYPE)}`}
+                        style={{
+                            width: iconSize,
+                            height: iconSize,
+                            marginBottom: '0.25rem',
+                            ...getShapeStyle(objet.TYPE),
+                        }}
+                    />
+                    {isStatus && (
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 w-max max-w-[200px] bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity z-10 whitespace-nowrap pointer-events-none">
+                            {objet.TYPE}
+                        </div>
+                    )}
+                </div>
+
             </div>
 
             {/* Affichage de l'identifiant sous la forme */}

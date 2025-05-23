@@ -129,6 +129,21 @@ const Config = ({ config }) => {
     // Cas 4 : structure valide → affichage
     return (
         <div className="p-2">
+            {/* PARENT de l’article principal */}
+            <div className="pl-2 mb-4 text-gray-700">
+                PARENT :{" "}
+                {config.PARENT.trim() === "" ? (
+                    "aucun"
+                ) : (
+                    <span
+                        onClick={() => window.open(`#/infos?article=${encodeURIComponent(config.PARENT)}`, '_blank')}
+                        className="text-blue-600 underline cursor-pointer"
+                    >
+                        {config.PARENT}
+                    </span>
+                )}
+            </div>
+
             {/* Nom de l’article principal */}
             <div className="pl-2 font-semibold">{config.ARTICLE}</div>
 
