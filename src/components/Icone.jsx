@@ -1,5 +1,10 @@
 import logoOCTOPUS from "../assets/Logo_V2.png";
 import logoSKF from "../assets/logo_skf.png";
+import iconeFab from "../assets/icone_fab.png";
+import iconeRep from "../assets/icone_rep.png";
+import iconeDerog from "../assets/icone_derog.jpg";
+
+
 
 /**
  * Composant Icone
@@ -44,21 +49,35 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique }) => {
                 return {}; // Forme par défaut (carré)
 
             case 'fab':
-                return { borderRadius: '20%' }; // Carré légèrement arrondi
+                return {
+                    backgroundImage: `url(${iconeFab})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                };
 
             case 'rep_in':
             case 'rep_out':
                 return { clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }; // Triangle
 
-            case 'diagnostique':
+            case 'constat':
+            case 'analyse':
             case 'réparation':
-            case 'test_rep':
-                return { clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }; // Losange
+                //return { clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }; // Losange
+                return {
+                    backgroundImage: `url(${iconeRep})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                };
 
             case 'derog':
+                // return {
+                //     clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
+                // }; // Hexagone
                 return {
-                    clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
-                }; // Hexagone
+                    backgroundImage: `url(${iconeDerog})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                };
 
             case 'image':
                 return {
@@ -130,9 +149,12 @@ const Icone = ({ id, objet, onClick, isSelected, isStatus, isHistorique }) => {
                             ...getShapeStyle(objet.TYPE),
                         }}
                     />
+                    {/* Informations de survol */}
                     {isStatus && (
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 w-max max-w-[200px] bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity z-10 whitespace-nowrap pointer-events-none">
                             {objet.TYPE}
+                            <br />
+                            {objet.MOYEN}
                         </div>
                     )}
                 </div>

@@ -1,6 +1,25 @@
-[  
-    { "ID_FLOW": 1, "TYPE": "création", "DATE": "2025-03-10", "ACTEUR": "PROD", "STATUT": "création" },
-    { "ID_FLOW": 2, "TYPE": "fab", "DATE": "2025-03-11", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "PLSOFT", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PLSOFT": "lien" } },
-    { "ID_FLOW": 3, "TYPE": "test", "DATE": "2025-03-11", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "OUTEST", "STEP": 1, "SEQ_FIM": "IND-xxxx", "ID_DOC": "lien" } },
-    { "ID_FLOW": 4, "TYPE": "intégration", "DATE": "2025-03-11", "ACTEUR": "PROD", "STATUT": "intégration", "DETAILS": { "MOYEN": "OUSOFT", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PARENT": "SN111 ELCART-1000(4242A)A" } }
-]
+{
+    "DESIGNATION":"article",
+    "MODE_ACTIF": "série",
+    "FLOW_ACTIF": {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+    "PROCESS": [
+        {
+            "MODE": "série",
+            "FLOW": [
+                {"TYPE":"création", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"intégration", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": "IND-xxxx"}
+            ]
+        },
+        {
+            "MODE": "panne",
+            "FLOW": [
+                {"TYPE":"rep_in", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"constat", "MOYEN": "constat", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"analyse", "MOYEN": "analyse", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"réparation", "MOYEN": "réparation", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"rep_out", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""}
+            ]
+        }
+    ]
+}

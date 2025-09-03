@@ -17,7 +17,7 @@ const CardTitleFS = ({ cardName, className = "" }) => {
             <span className="text-sm font-semibold">{cardName} :</span>
 
             {/* Bouton info qui peut afficher un message (tooltip, modal, etc.) */}
-            <BoutonInfos message="Ceci est un message" />
+            <BoutonInfos message="Ceci est un message d'information complémentaire pour aider l'utilisateur" />
         </div>
     );
 };

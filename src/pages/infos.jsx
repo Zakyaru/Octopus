@@ -73,7 +73,7 @@ const Infos = () => {
         {/* Composant d'affichage du status */}
         <div className={`w-full lg:flex-1 overflow-x-auto shadow ${cardBackground}`}>
           <div className="min-w-fit">
-            <CardTitleFS cardName="STATUS" />
+            <CardTitleFS cardName="PROCESS" />
             <Status status={statusData} />
           </div>
         </div>
@@ -90,7 +90,7 @@ const Infos = () => {
       </div>
 
       {/* 3. Section trois colonnes : Détails | Commentaires & Autre | Config */}
-      <div className="flex flex-col lg:flex-row lg:h-[350px] gap-4">
+      <div className="flex flex-col lg:flex-row lg:h-[320px] gap-4">
 
         {/* 3.1 - Détails de l'objet sélectionné dans l'historique */}
         <div className={`flex-1 shadow ${cardBackground}`}>
@@ -112,7 +112,9 @@ const Infos = () => {
               <div className="flex-1 overflow-auto p-2">
                 {apiResult && (
                   <p>
-                    Ceci est un exemple de commentaire
+                    Prochaine étape : <span className='font-semibold'>TEST</span>
+                    <br />
+                    MOYEN : <span className='font-semibold'>OUSOFT-0011</span>
                   </p>
                 )}
               </div>
@@ -135,7 +137,7 @@ const Infos = () => {
         {/* 3.3 - Configuration JSON brute affichée via le composant Config */}
         <div className={`flex-1 shadow ${cardBackground}`}>
           <div className="flex flex-col h-full">
-            <CardTitleFS cardName="CONFIG" />
+            <CardTitleFS cardName="STRUCTURE" />
             <div className="flex-1 overflow-auto">
               <div className="w-max whitespace-nowrap">
                 <Config config={configData} />

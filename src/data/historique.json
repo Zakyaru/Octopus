@@ -4,14 +4,13 @@
     { "ID_FLOW": 2, "TYPE": "test", "DATE": "2025-03-11", "ACTEUR": "PROD", "STATUT": "NOK", "DETAILS": { "MOYEN": "OUTEST", "STEP": 1, "SEQ_FIM": "IND-xxxx", "ID_DOC": "lien" } },
     { "ID_FLOW": 2, "TYPE": "test", "DATE": "2025-03-11", "ACTEUR": "PROD", "STATUT": "NOK", "DETAILS": { "MOYEN": "OUTEST", "STEP": 1, "SEQ_FIM": "IND-xxxx", "ID_DOC": "lien" } },
     { "ID_FLOW": 1, "TYPE": "rep_in", "DATE": "2025-03-11", "ACTEUR": "OCTOPUS", "STATUT": "rep_in" },
-    { "ID_FLOW": 2, "TYPE": "diagnostique", "DATE": "2025-03-12", "ACTEUR": "REP", "STATUT": "OK", "DETAILS": { "MOYEN": "diagnostique", "STEP": 1, "SEQ_FIM": "IND-xxxx", "COMMENTAIRE": "problème de résistance" } },
-    { "ID_FLOW": 3, "TYPE": "réparation", "DATE": "2025-03-12", "ACTEUR": "REP", "STATUT": "OK", "DETAILS": { "MOYEN": "réparation", "STEP": 1, "SEQ_FIM": "IND-xxxx", "COMMENTAIRE": "résistance changée" } },
-    { "ID_FLOW": 4, "TYPE": "diagnostique", "DATE": "2025-03-12", "ACTEUR": "REP", "STATUT": "OK", "DETAILS": { "MOYEN": "diagnostique", "STEP": 1, "SEQ_FIM": "IND-xxxx", "COMMENTAIRE": "ok pour réintégrer le cycle normal" } },
+    { "ID_FLOW": 2, "TYPE": "constat", "DATE": "2025-03-12", "ACTEUR": "REP", "STATUT": "OK", "DETAILS": { "MOYEN": "constat", "STEP": 1, "SEQ_FIM": "IND-xxxx", "COMMENTAIRE": "problème de résistance" } },
+    { "ID_FLOW": 3, "TYPE": "analyse", "DATE": "2025-03-12", "ACTEUR": "REP", "STATUT": "OK", "DETAILS": { "MOYEN": "analyse", "STEP": 1, "SEQ_FIM": "IND-xxxx", "COMMENTAIRE": "résistance changée" } },
+    { "ID_FLOW": 4, "TYPE": "réparation", "DATE": "2025-03-12", "ACTEUR": "REP", "STATUT": "OK", "DETAILS": { "MOYEN": "réparation", "STEP": 1, "SEQ_FIM": "IND-xxxx", "COMMENTAIRE": "ok pour réintégrer le cycle normal" } },
+    { "ID_FLOW": 0, "TYPE": "derog", "DATE": "2025-03-11", "ACTEUR": "QHS", "STATUT": "derog:XXXX" },
     { "ID_FLOW": 5, "TYPE": "rep_out", "DATE": "2025-03-11", "ACTEUR": "OCTOPUS", "STATUT": "rep_out" },
-    { "ID_FLOW": 2, "TYPE": "test", "DATE": "2025-03-13", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "OUTEST", "STEP": 1, "SEQ_FIM": "IND-xxxx", "ID_DOC": "lien" } },
-    { "ID_FLOW": 3, "TYPE": "test", "DATE": "2025-03-13", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "OUTEST", "STEP": 2, "SEQ_FIM": "IND-xxxx", "ID_DOC": "lien" } },
-    { "ID_FLOW": 4, "TYPE": "fab", "DATE": "2025-03-14", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "PLHARD", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PLHARD": "lien" } },
-    { "ID_FLOW": 5, "TYPE": "image", "DATE": "2025-03-14", "ACTEUR": "PROD", "STATUT": "image", "DETAILS": { "MOYEN": "PLHARD", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PLHARD": "lien" } }
+    { "ID_FLOW": 2, "TYPE": "test", "DATE": "2025-03-13", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "OUTEST-0001", "STEP": 1, "SEQ_FIM": "IND-xxxx", "ID_DOC": "lien" } },
+    { "ID_FLOW": 3, "TYPE": "fab", "DATE": "2025-03-14", "ACTEUR": "PROD", "STATUT": "OK", "DETAILS": { "MOYEN": "PLHARD", "STEP": 1, "SEQ_FIM": "IND-xxxx", "PLHARD": "lien" } }
 ]
 
   

@@ -35,11 +35,8 @@ const objets = [
 
 const Admin = () => {
   return (
-    <div className="p-4">
-      <h1 className="font-bold text-xl">Page Admin test OK3</h1>
-      <CardTitleFS cardName="HISTORIQUE" />
-      <CardTitleFS cardName="COMMENTAIRES" />
-      <CardTitleFS cardName="TESTS" />
+    <div className='p-4'>
+      <p className='text-xl'>Page Admin</p>
     </div>
   );
 };

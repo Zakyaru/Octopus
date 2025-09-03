@@ -1,32 +1,23 @@
 {
     "DESIGNATION":"article",
-    "MODE_ACTIF": "présérie",
-    "FLOW_ACTIF": {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+    "MODE_ACTIF": "panne",
+    "FLOW_ACTIF": {"TYPE":"constat", "MOYEN": "constat", "STEP":1, "SEQ_FIM": ""},
     "PROCESS": [
-        {
-            "MODE": "présérie",
-            "FLOW": [
-                {"TYPE":"création", "MOYEN": "création", "STEP":1, "SEQ_FIM": ""},
-                {"TYPE":"fab", "MOYEN": "PLSOFT", "STEP":1, "SEQ_FIM": "IND-xxxx"},
-                {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"}
-            ]
-        },
         {
             "MODE": "série",
             "FLOW": [
-                {"TYPE":"création", "MOYEN": "création", "STEP":1, "SEQ_FIM": ""},
-                {"TYPE":"fab", "MOYEN": "PLSOFT", "STEP":1, "SEQ_FIM": "IND-xxxx"},
+                {"TYPE":"création", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""},
                 {"TYPE":"test", "MOYEN": "OUSOFT-0011", "STEP":1, "SEQ_FIM": "IND-xxxx"},
-                {"TYPE":"intégration", "MOYEN": "intégration", "STEP":1, "SEQ_FIM": "IND-xxxx"}
+                {"TYPE":"intégration", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": "IND-xxxx"}
             ]
         },
         {
             "MODE": "panne",
             "FLOW": [
                 {"TYPE":"rep_in", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""},
-                {"TYPE":"diagnostique", "MOYEN": "diagnostique", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"constat", "MOYEN": "constat", "STEP":1, "SEQ_FIM": ""},
+                {"TYPE":"analyse", "MOYEN": "analyse", "STEP":1, "SEQ_FIM": ""},
                 {"TYPE":"réparation", "MOYEN": "réparation", "STEP":1, "SEQ_FIM": ""},
-                {"TYPE":"test", "MOYEN": "test", "STEP":1, "SEQ_FIM": "IND-xxxx"},
                 {"TYPE":"rep_out", "MOYEN": "OCTOPUS", "STEP":1, "SEQ_FIM": ""}
             ]
         }
